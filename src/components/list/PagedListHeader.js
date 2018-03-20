@@ -27,7 +27,10 @@ const PagedListHeader = ({
           Sort by:
           <select id="sortby" name="sort" value={sortBy} onChange={sortOnChange}>
             {
-              sorts.map((sort, i) => <option key={i}>{sort}</option>)
+              sorts.map((sort, i) => {
+                let sortWords = sort.split(/(?=[A-Z])/);
+                return <option key={i} value={sort}>{sortWords.join(" ")}</option>;
+              })
             }
           </select>
           <span className="arrow" />
