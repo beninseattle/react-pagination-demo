@@ -24,9 +24,25 @@
 
 .sortable {
     cursor: pointer;
+    padding-right: 10px;
 }
 
 .sortable:hover {
     color: #282653;
     background: #d9dadd;
+}
+
+.arrow {
+    border: 5px solid transparent;
+    color: #282653;
+    display: inline-block;
+    height: 0;
+    left: 0px;
+    position: relative;
+    vertical-align: -4px;
+    width: 0;
+}
+
+.sorted {
+    border-top-color: inherit;
 }

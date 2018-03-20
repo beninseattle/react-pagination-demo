@@ -111,7 +111,7 @@ function withPagination(List) {
           <List
             listData={this.state.addresses}
             sortColumns={this.state.filters.sorts}
-            sortBy={this.setSortBy}
+            sortBy={this.state.filters.sortBy}
             onSort={this.setSortBy}
           />
         </div>
