@@ -1,0 +1,12 @@
+.list {
+    /*font-size: .75rem;*/
+    color: #808285;
+    width: 100%;
+    text-align: left;
+}
+
+.list th, .list td {
+    padding-left: .5rem;
+    text-align: left;
+    vertical-align: middle;
+}

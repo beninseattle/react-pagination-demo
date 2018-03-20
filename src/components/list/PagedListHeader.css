@@ -1,0 +1,72 @@
+.pagedlistheader {
+    color: #7f65c5;
+    display: flex;
+    font-size: .75rem;
+    font-weight: 400;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.pagedlistheader div {
+    display: inline-block;
+}
+
+.pagedlistheader .title {
+    font-size: 1rem;
+}
+
+.pagedlistheader select {
+    appearance: none;
+    background: transparent;
+    border-width: 0px;
+    color: #1dafe9;
+    cursor: pointer;
+    font-weight: 600;
+    margin-left: .25rem;
+    padding-right: 10px;
+}
+
+.pagedlistheader .pagingbutton {
+    color: #1dafe9;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-left: .5rem;
+}
+
+.pagedlistheader .arrow {
+    border: 5px solid;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    color: #1dafe9;
+    cursor: pointer;
+    display: inline-block;
+    height: 0;
+    left: -10px;
+    margin-right: 5px;
+    position: relative;
+    vertical-align: -4px;
+    width: 0;
+    z-index: -1
+}
+
+.sortby {
+    padding-left: .5rem;
+}
+.sortby::before {
+    content: "|";
+    color: #bcbec0;
+    font-size: 1rem;
+    font-weight: 300;
+    padding-right: .5rem;
+}
+
+.pagedlistheader .paging {
+    font-size: .875rem;
+    font-weight: 700;
+}
+
+.pagedlistheader .lightfont {
+    font-weight: 400;
+}
