@@ -1,12 +1,13 @@
-import {createStore, combineReducers} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
+import thunk from 'redux-thunk';
+
 import {addressesReducer} from './reducers/addresses';
-import {filtersReducer} from './reducers/filters';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default () => {
   return createStore(
-    combineReducers({
-      addresses: addressesReducer,
-      filters: filtersReducer
-    })
+    addressesReducer,
+    composeEnhancers(applyMiddleware(thunk))
   );
-};
+}

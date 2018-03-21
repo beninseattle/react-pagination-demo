@@ -35,6 +35,16 @@
     margin-left: .5rem;
 }
 
+.pagedlistheader .pagingbutton .dive {
+    position: relative;
+    vertical-align: -2px;
+}
+
+.pagedlistheader .pagingdisabled {
+    color: #e8e8e8;
+    cursor: not-allowed;
+}
+
 .pagedlistheader .arrow {
     border: 5px solid;
     border-right-color: transparent;

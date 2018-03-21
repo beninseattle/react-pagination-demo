@@ -3,11 +3,15 @@ import React from 'react';
 import './PagedListHeader.css';
 
 const PagedListHeader = ({
-                           title, sorts, sortBy, pageSizes, pageSize, page, totalItems,
-                           setSortBy, setPageSize, prevPage, nextPage
+                           title, sorts, sortBy, pageSizes, pageSize, row, totalItems,
+                           setSortBy, setPageSize, firstPage, prevPage, nextPage, lastPage,
+                           canPrevPage, canNextPage
                          }) => {
-  const pageStart = (page - 1) * pageSize + 1;
-  const pageEnd = pageStart + pageSize > totalItems ? totalItems : pageStart + pageSize;
+  const pageStart = row;
+  const intPageSize = Number.parseInt(pageSize, 10);
+  const pageEnd = pageStart + intPageSize - 1 > totalItems ? totalItems : pageStart + intPageSize - 1;
+  const pagePrevClass = canPrevPage ? 'pagingbutton' : 'pagingbutton pagingdisabled';
+  const pageNextClass = canNextPage ? 'pagingbutton' : 'pagingbutton pagingdisabled';
 
   const sortOnChange = (e) => {
     e.preventDefault();
@@ -26,8 +30,10 @@ const PagedListHeader = ({
         <div className="sortby">
           Sort by:
           <select id="sortby" name="sort" value={sortBy} onChange={sortOnChange}>
+            <option value=""></option>
             {
               sorts.map((sort, i) => {
+                // TODO: Firefox doesn't appear to text-transform: cap in the select popup
                 let sortWords = sort.split(/(?=[A-Z])/);
                 return <option key={i} value={sort}>{sortWords.join(" ")}</option>;
               })
@@ -48,8 +54,10 @@ const PagedListHeader = ({
         </div>
         <div className="paging">
           {pageStart} - {pageEnd} <span className="lightfont">of</span> {totalItems}
-          <span className="pagingbutton" onClick={prevPage}>&lt;</span>
-          <span className="pagingbutton" onClick={nextPage}>&gt;</span>
+          <span title="Go to first page" className={pagePrevClass} onClick={firstPage}><span className="dive">&#124;</span>&lt;</span>
+          <span title="Previous page" className={pagePrevClass} onClick={prevPage}>&lt;</span>
+          <span title="Next page" className={pageNextClass} onClick={nextPage}>&gt;</span>
+          <span title="Go to last page" className={pageNextClass} onClick={lastPage}>&gt;<span className="dive">&#124;</span></span>
         </div>
       </div>
     </div>

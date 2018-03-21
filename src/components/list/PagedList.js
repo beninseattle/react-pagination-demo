@@ -1,118 +1,45 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import './PagedList.css';
 import PagedListHeader from './PagedListHeader';
 import List from './List';
-// import {setPage} from "../../store/actions/filters";
 
-const addresses = {
-  columns: [
-    'firstName',
-    'lastName',
-    'country',
-    'street',
-    'city',
-    'state',
-    'zip',
-    'phone'
-  ],
-  data: [
-    ["Zachary", "Borgetti", "USA", "2234 3rd Ave Ste 3", "Seattle", "WA", "98101", "206-778-5741"],
-    ["Landon", "Donovan", "USA", "18400 S Avalon Blvd", "Carson", "CA", "90746", "310-630-2200"],
-    ["Samuel L.", "Jackson", "USA", "2226 2nd Ave", "Seattle", "WA", "98121", "206-441-5660"],
-    ["Michael", "Jordan", "USA", "1901 West Madison Street", "Chicago", "IL", "60612", "312-455-4000"],
-    ["Aaron", "Meautiful", "Mexico", "3465 Calzada de Tlalpan", "Coyoacan", "CDMX", "04650", "+52-55-5487-3100"],
-    ["Michael", "Myers", "USA", "590 Galer St", "Austin", "TX", "79935", "915-857-1770"],
-    ["Maite", "Perroni", "Mexico", "2101 Av. Juarez", "Mexico City", "CDMX", "06050", "+52 55 5365 1250"],
-    ["Joel", "Schaper", "USA", "1823 Terry Ave, Suite 319", "Seattle", "WA", "98121", "206-258-4687"],
-    ["Brian", "Stallone", "USA", "4567 Lake Washington Blvd NE, Suite 6709", "Kirkland", "OR", "98132", "425-333-4567"],
-    ["Rahul", "Veloved", "England", "118 Piccadilly", "Mayfair", "London", "W1J 7NW", "+44 (0)20-7042-7118"],
-  ]
-};
-
-let filters = {
-  page: 1,
-  pageSize: 100,
-  pageSizes: [
-    5,
-    10,
-    25,
-    50,
-    75,
-    100
-  ],
-  sortBy: 'firstName',
-  sorts: [
-    'firstName',
-    'lastName',
-    'city',
-    'country',
-    'state'
-  ]
-};
+import getPageOfAddresses from '../../store/selectors/pagedAddresses';
+import totalAddresses from '../../store/selectors/totalAddresses';
+import getFilters from '../../store/selectors/getFilters';
+import canPrevPage from "../../store/selectors/canPrevPage";
+import canNextPage from "../../store/selectors/canNextPage";
+import {setSortBy, setPageSize, firstPage, prevPage, nextPage, lastPage} from '../../store/actions/addresses';
 
 function withPagination(List) {
   return class extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        addresses: {...addresses},
-        filters: {...filters}
-      };
-    }
-
-    setSortBy = (value) => {
-      console.log("sorting by " + value);
-      this.setState((prevState) => {
-        const newFilters = {
-          ...prevState.filters,
-          sortBy: value
-        };
-        return {filters: newFilters};
-      });
-    };
-
-    setPageSize = (value) => {
-      this.setState((prevState) => {
-        const newFilters = {
-          ...prevState.filters,
-          pageSize: value
-        };
-        return {filters: newFilters};
-      });
-    };
-
-    prevPage = () => {
-      console.log('Go to previous page');
-    };
-
-    nextPage = () => {
-      console.log('Go to next page');
-    };
-
-
 
     render() {
       return (
         <div className="pagedlist">
           <PagedListHeader
             title="Awesome"
-            sorts={this.state.filters.sorts}
-            sortBy={this.state.filters.sortBy}
-            pageSizes={this.state.filters.pageSizes}
-            pageSize={this.state.filters.pageSize}
-            page={this.state.filters.page}
-            totalItems={this.state.addresses.data.length}
-            setSortBy={this.setSortBy}
-            setPageSize={this.setPageSize}
-            prevPage={this.prevPage}
-            nextPage={this.nextPage}
+            sorts={this.props.filters.sorts}
+            sortBy={this.props.filters.sortBy}
+            pageSizes={this.props.filters.pageSizes}
+            pageSize={this.props.filters.pageSize}
+            row={this.props.filters.row}
+            totalItems={this.props.totalAddresses}
+            setSortBy={this.props.setSortBy}
+            setPageSize={this.props.setPageSize}
+            firstPage={this.props.firstPage}
+            prevPage={this.props.prevPage}
+            nextPage={this.props.nextPage}
+            lastPage={this.props.lastPage}
+            canPrevPage={this.props.canPrevPage}
+            canNextPage={this.props.canNextPage}
           />
           <List
-            listData={this.state.addresses}
-            sortColumns={this.state.filters.sorts}
-            sortBy={this.state.filters.sortBy}
-            onSort={this.setSortBy}
+            listData={this.props.addresses}
+            sortColumns={this.props.filters.sorts}
+            sortBy={this.props.filters.sortBy}
+            onSort={this.props.setSortBy}
           />
         </div>
       );
@@ -120,4 +47,23 @@ function withPagination(List) {
   }
 }
 
-export default withPagination(List);
+const mapStateToProps = (state) => {
+  return {
+    addresses: getPageOfAddresses(state),
+    totalAddresses: totalAddresses(state),
+    filters: getFilters(state),
+    canPrevPage: canPrevPage(state),
+    canNextPage: canNextPage(state)
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  setSortBy: (column) => dispatch(setSortBy(column)),
+  setPageSize: (size) => dispatch(setPageSize(size)),
+  firstPage: () => dispatch(firstPage()),
+  nextPage: () => dispatch(nextPage()),
+  prevPage: () => dispatch(prevPage()),
+  lastPage: () => dispatch(lastPage())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withPagination(List));
