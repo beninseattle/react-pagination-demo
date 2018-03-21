@@ -103,7 +103,7 @@ export const addressesReducer = (state = addressesReducerDefaultState, action) =
 
     case 'SORT_BY_COLUMN':
       // Sorry, you cannot unsort!
-      if( action.column === "" ){
+      if( action.column === "" || action.column === state.filters.sortBy ){
         return state;
       }
 
