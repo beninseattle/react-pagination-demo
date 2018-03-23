@@ -1,0 +1,64 @@
+.list {
+  color: $gray;
+  font-size: $normalFont;
+  text-align: left;
+  width: 100%;
+}
+
+.list th, .list td {
+  padding-left: $smallSpace;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.listheader {
+  color: $darkBlue;
+  font-weight: $veryHeavyWeight;
+  height: $rowHeight;
+}
+
+.listheader th {
+  background: $lightGray;
+  text-transform: capitalize;
+}
+
+/* round upper corners of header */
+.listheader th:first-child {
+  -webkit-border-radius: 3px 0 0 0;
+  -moz-border-radius: 3px 0 0 0;
+  border-radius: 3px 0 0 0;
+}
+
+.listheader th:last-child {
+  -webkit-border-radius: 0 3px 0 0;
+  -moz-border-radius: 0 3px 0 0;
+  border-radius: 0 3px 0 0;
+}
+
+.listheader .sortable {
+  cursor: pointer;
+  padding-right: $smallSpace;
+}
+
+.listheader .sortable:hover {
+  color: $darkBlue;
+  background: lighten($lightGray, 10%);
+}
+
+/* Hide sorted triangle until unless sorted */
+.listheader .downtriangle {
+  border-color: transparent;
+}
+
+.listheader .sorted {
+  border-top-color: inherit;
+}
+
+.list .listrow {
+  background: $listRowEven;
+  height: $rowHeight;
+}
+
+.list .listrow:nth-child(odd) {
+  background: $listRowOdd;
+}

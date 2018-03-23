@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './ListHeader.css';
-
 export const ListHeader = ({columns, sortColumns, sortBy, onSort}) => {
   const onClickSort = (column) => {
     return () => onSort(column);
@@ -15,9 +13,9 @@ export const ListHeader = ({columns, sortColumns, sortBy, onSort}) => {
           // split up camel case words
           const words = header.split(/(?=[A-Z])/);
           // set up sortable headers
-          let cellClasses = "listheader__cell";
+          let cellClasses = "";
           let onClickFunc;
-          let sortedClass = "arrow";
+          let sortedClass = "downtriangle";
           if( sortColumns.indexOf(header) !== -1 ){
             cellClasses += " sortable";
             onClickFunc = onClickSort(header);

@@ -3,7 +3,7 @@ import {Provider} from 'react-redux';
 // eslint-disable-next-line
 import reset from 'reset-css';
 
-import './App.css';
+import './styles/styles.css';
 import Loading from './components/Loading';
 import Header from './components/Navigation';
 import Content from './components/Content';

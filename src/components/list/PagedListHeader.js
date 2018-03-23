@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './PagedListHeader.css';
-
 const PagedListHeader = ({
                            title, sorts, sortBy, pageSizes, pageSize, row, totalItems,
                            setSortBy, setPageSize, firstPage, prevPage, nextPage, lastPage,
@@ -25,12 +23,12 @@ const PagedListHeader = ({
 
   return (
     <div className="pagedlistheader">
-      <div className="pagedlistheader__left">
+      <div>
         <div className="title">List of {title}</div>
         <div className="sortby">
           Sort by:
-          <select id="sortby" name="sort" value={sortBy} onChange={sortOnChange}>
-            <option value=""></option>
+          <select title="Select a field to sort" id="sortby" name="sort" value={sortBy} onChange={sortOnChange}>
+            <option value="" />
             {
               sorts.map((sort, i) => {
                 // TODO: Firefox doesn't appear to text-transform: cap in the select popup
@@ -39,18 +37,18 @@ const PagedListHeader = ({
               })
             }
           </select>
-          <span className="arrow" />
+          <span className="downtriangle" />
         </div>
       </div>
       <div className="pagedlistheader__right">
         <div className="pagesize">
           items per page:
-          <select id="pagesize" name="pagesize" value={pageSize} onChange={pageSizeOnChange}>
+          <select title="Select the number of rows per page" id="pagesize" name="pagesize" value={pageSize} onChange={pageSizeOnChange}>
             {
               pageSizes.map((sizes, i) => <option key={i}>{sizes}</option>)
             }
           </select>
-          <span className="arrow" />
+          <span className="downtriangle" />
         </div>
         <div className="paging">
           {pageStart} - {pageEnd} <span className="lightfont">of</span> {totalItems}

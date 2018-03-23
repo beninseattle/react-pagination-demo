@@ -1,9 +1,0 @@
-.listrow {
-    background: #f0f0f0;
-    font-size: .75rem;
-    height: 32px;
-}
-
-.listrow:nth-child(odd) {
-    background: #f7f7f7;
-}

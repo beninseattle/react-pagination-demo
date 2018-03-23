@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $pageFont;
+}
+
+.downtriangle {
+  border: 5px solid;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  display: inline-block;
+  height: 0;
+  left: 0;
+  position: relative;
+  vertical-align: -4px;
+  width: 0;
+}

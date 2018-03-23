@@ -1,6 +1,5 @@
 import React from 'react';
 
-import './List.css';
 import ListHeader from './ListHeader';
 import ListContent from './ListContent';
 

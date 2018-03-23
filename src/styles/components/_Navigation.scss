@@ -1,0 +1,33 @@
+.navigation {
+  background: $darkBlue;
+  color: $lightBlueGray;
+  font-size: $normalFont;
+  font-weight: $normalWeight;
+  height: $navHeight;
+  margin-bottom: $mediumSpace;
+  padding: 0 30px;
+}
+
+.navigation > div {
+  display: table-cell;
+  height: $navHeight;
+  vertical-align: middle;
+  width: 100px;
+}
+
+.navigation > div > div {
+  text-align: center;
+}
+
+.active {
+  background: $purple;
+  color: $white;
+  text-shadow: 2px 2px 3px $black;
+}
+
+.navigation > div:not(.active):hover {
+  background: mix($darkBlue, $purple);
+  color: $white;
+  cursor: pointer;
+  text-shadow: 2px 2px 2px $black;
+}

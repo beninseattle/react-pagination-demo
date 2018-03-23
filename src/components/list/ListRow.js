@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './ListRow.css';
-
 export const ListRow = ({data}) => {
   return (
     <tr className="listrow">

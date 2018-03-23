@@ -1,0 +1,78 @@
+
+.pagedlistheader {
+  color: $purple;
+  display: flex;
+  font-size: $normalFont;
+  font-weight: $normalWeight;
+  justify-content: space-between;
+  margin-bottom: $smallSpace;
+}
+
+.pagedlistheader div {
+  display: inline-block;
+}
+
+.pagedlistheader .title {
+  font-size: $veryBigFont;
+}
+
+.pagedlistheader select {
+  appearance: none;
+  background: transparent;
+  border-width: 0;
+  color: $lightBlue;
+  cursor: pointer;
+  font-weight: $heavyWeight;
+  margin-left: $verySmallSpace;
+  padding-right: 10px;
+  text-transform: capitalize;
+}
+
+.pagedlistheader .pagingbutton {
+  color: $lightBlue;
+  cursor: pointer;
+  font-size: $veryBigFont;
+  font-weight: $normalWeight;
+  margin-left: $smallSpace;
+}
+
+.pagedlistheader .pagingbutton .dive {
+  position: relative;
+  vertical-align: -2px;
+}
+
+.pagedlistheader .pagingbutton:not(.pagingdisabled):hover {
+  text-shadow: 2px 2px 2px $lightGray;
+}
+
+.pagedlistheader .pagingdisabled {
+  color: grayscale($lightBlue);
+  cursor: not-allowed;
+}
+
+.pagedlistheader .downtriangle {
+  color: $lightBlue;
+  cursor: pointer;
+  left: -10px;
+  margin-right: 5px;
+  z-index: -1
+}
+
+.sortby {
+  padding-left: $smallSpace;
+}
+.sortby::before {
+  content: "|";
+  font-size: $veryBigFont;
+  font-weight: $lightWeight;
+  padding-right: $smallSpace;
+}
+
+.pagedlistheader .paging {
+  font-size: $bigFont;
+  font-weight: $veryHeavyWeight;
+}
+
+.pagedlistheader .lightfont {
+  font-weight: $normalWeight;
+}
