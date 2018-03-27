@@ -1,16 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export const ListRow = ({data}) => {
+export const ListRow = ({dataRow}) => {
   return (
     <tr className="listrow">
-      {data.length ?
-        data.map((cell, i) => {
+      {dataRow.length ?
+        dataRow.map((cell, i) => {
           return <td key={i} className="list_cel">{cell}</td>
         }) :
-        <div>No data to show!</div>
+        <td>No data to show!</td>
       }
     </tr>
   );
+};
+
+ListRow.propTypes = {
+  dataRow: PropTypes.arrayOf(PropTypes.any).isRequired
 };
 
 export default ListRow;

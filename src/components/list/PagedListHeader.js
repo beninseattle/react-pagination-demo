@@ -1,4 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import '../../baUtils';
 
 const PagedListHeader = ({
                            title, sorts, sortBy, pageSizes, pageSize, row, totalItems,
@@ -31,9 +34,7 @@ const PagedListHeader = ({
             <option value="" />
             {
               sorts.map((sort, i) => {
-                // TODO: Firefox doesn't appear to text-transform: cap in the select popup
-                let sortWords = sort.split(/(?=[A-Z])/);
-                return <option key={i} value={sort}>{sortWords.join(" ")}</option>;
+                return <option key={i} value={sort}>{sort.camelToTitleSpaced()}</option>;
               })
             }
           </select>
@@ -61,5 +62,28 @@ const PagedListHeader = ({
     </div>
   );
 };
+
+PagedListHeader.propTypes = {
+  title: PropTypes.string.isRequired,
+  sorts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  sortBy: PropTypes.string,
+  pageSizes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  pageSize: PropTypes.string,
+  row: PropTypes.number.isRequired,
+  totalItems: PropTypes.number.isRequired,
+  setSortBy: PropTypes.func.isRequired,
+  setPageSize: PropTypes.func.isRequired,
+  firstPage: PropTypes.func.isRequired,
+  prevPage: PropTypes.func.isRequired,
+  nextPage: PropTypes.func.isRequired,
+  lastPage: PropTypes.func.isRequired,
+  canPrevPage: PropTypes.bool.isRequired,
+  canNextPage: PropTypes.bool.isRequired
+};
+
+PagedListHeader.defaultProps = {
+  pageSize: '10'
+};
+
 
 export default PagedListHeader;

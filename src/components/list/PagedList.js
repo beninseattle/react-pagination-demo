@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 import PagedListHeader from './PagedListHeader';
 import List from './List';
@@ -12,13 +13,13 @@ import canNextPage from "../../store/selectors/canNextPage";
 import {setSortBy, setPageSize, firstPage, prevPage, nextPage, lastPage} from '../../store/actions/addresses';
 
 function withPagination(List) {
-  return class extends React.Component {
+  class PagedList extends React.Component {
 
     render() {
       return (
         <div className="pagedlist">
           <PagedListHeader
-            title="Awesome"
+            title={this.props.title}
             sorts={this.props.filters.sorts}
             sortBy={this.props.filters.sortBy}
             pageSizes={this.props.filters.pageSizes}
@@ -44,6 +45,12 @@ function withPagination(List) {
       );
     }
   }
+
+  PagedList.propTypes = {
+    title: PropTypes.string.isRequired
+  };
+
+  return PagedList;
 }
 
 const mapStateToProps = (state) => {

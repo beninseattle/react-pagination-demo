@@ -62,3 +62,46 @@
 .list .listrow:nth-child(odd) {
   background: $listRowOdd;
 }
+
+// Responsive table technique thanks to https://css-tricks.com/responsive-data-tables/
+
+@media
+only screen and (max-width: 900px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
+
+  /* Force table to not be like tables anymore */
+  table.list, .list thead, .list tbody, .list th, .list td, .list tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  .list thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .list tr { border: 1px solid #ccc; }
+  .list .listrow {
+    height: inherit;
+  }
+
+  .list td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 5rem;
+    margin: $verySmallSpace $smallSpace $verySmallSpace 0;
+  }
+
+  .list td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+}

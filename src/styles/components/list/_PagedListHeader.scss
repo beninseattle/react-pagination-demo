@@ -12,6 +12,10 @@
   display: inline-block;
 }
 
+.pagedlistheader .pagelistheader__right {
+  text-align: right;
+}
+
 .pagedlistheader .title {
   font-size: $veryBigFont;
 }
@@ -75,4 +79,12 @@
 
 .pagedlistheader .lightfont {
   font-weight: $normalWeight;
+}
+
+@media
+only screen and (max-width: 900px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
+  //.sortby::before {
+  //  display: none;
+  //}
 }

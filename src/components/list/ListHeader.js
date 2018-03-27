@@ -1,4 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import '../../baUtils';
 
 export const ListHeader = ({columns, sortColumns, sortBy, onSort}) => {
   const onClickSort = (column) => {
@@ -10,8 +13,6 @@ export const ListHeader = ({columns, sortColumns, sortBy, onSort}) => {
     <tr className="listheader">
       {columns.length ?
         columns.map((header, i) => {
-          // split up camel case words
-          const words = header.split(/(?=[A-Z])/);
           // set up sortable headers
           let cellClasses = "";
           let onClickFunc;
@@ -25,14 +26,25 @@ export const ListHeader = ({columns, sortColumns, sortBy, onSort}) => {
           }
 
           return <th key={i} className={cellClasses} onClick={onClickFunc}>
-            {words.join(" ")} <span className={sortedClass} />
+            {header.camelToTitleSpaced()} <span className={sortedClass} />
             </th>;
         }) :
-        <div>No columns for headers</div>
+        <th>No columns for headers</th>
       }
     </tr>
     </thead>
   );
+};
+
+ListHeader.propTypes = {
+  columns: PropTypes.arrayOf(PropTypes.string).isRequired,
+  sortColumns: PropTypes.arrayOf(PropTypes.string).isRequired,
+  sortBy: PropTypes.string,
+  onSort: PropTypes.func.isRequired
+};
+
+ListHeader.defaultProps = {
+  sortBy: ""
 };
 
 export default ListHeader;
